@@ -24,9 +24,6 @@ const App: React.FC = () => {
       return [...prev, { ...product, quantity }];
     });
     
-    // O carrinho agora NÃO abre automaticamente por pedido do usuário
-    // setIsCartOpen(true);
-    
     // Mantemos apenas o feedback visual do ícone flutuante
     setShouldAnimateCart(true);
     setTimeout(() => setShouldAnimateCart(false), 300);
@@ -94,22 +91,36 @@ const App: React.FC = () => {
 
       <main className="max-w-7xl mx-auto px-4 py-12">
         <div className="flex flex-col items-center mb-12">
-          <div className="flex bg-white/60 p-2 rounded-2xl backdrop-blur-sm border border-white/40 shadow-sm mb-12">
+          <div className="flex flex-wrap justify-center bg-white/40 p-2 rounded-2xl backdrop-blur-sm border border-white/40 shadow-inner mb-12 gap-2">
             <button
               onClick={() => setActiveCategory(Category.PAPELARIA)}
-              className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-sm md:text-base ${
-                activeCategory === Category.PAPELARIA ? 'bg-pink-500 text-white shadow-md' : 'text-pink-600'
+              className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-xs md:text-base shadow-sm hover:shadow-md active:scale-95 ${
+                activeCategory === Category.PAPELARIA 
+                  ? 'bg-pink-500 text-white shadow-pink-300 shadow-md ring-1 ring-pink-400' 
+                  : 'bg-white/80 text-pink-600 hover:bg-white'
               }`}
             >
               PAPELARIA
             </button>
             <button
               onClick={() => setActiveCategory(Category.MOCHILAS_ESTOJOS)}
-              className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-sm md:text-base ${
-                activeCategory === Category.MOCHILAS_ESTOJOS ? 'bg-pink-500 text-white shadow-md' : 'text-pink-600'
+              className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-xs md:text-base shadow-sm hover:shadow-md active:scale-95 ${
+                activeCategory === Category.MOCHILAS_ESTOJOS 
+                  ? 'bg-pink-500 text-white shadow-pink-300 shadow-md ring-1 ring-pink-400' 
+                  : 'bg-white/80 text-pink-600 hover:bg-white'
               }`}
             >
-              MOCHILAS e ESTOJOS
+              MOCHILAS E ESTOJOS
+            </button>
+            <button
+              onClick={() => setActiveCategory(Category.AGENDAS_CADERNOS)}
+              className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-xs md:text-base shadow-sm hover:shadow-md active:scale-95 ${
+                activeCategory === Category.AGENDAS_CADERNOS 
+                  ? 'bg-pink-500 text-white shadow-pink-300 shadow-md ring-1 ring-pink-400' 
+                  : 'bg-white/80 text-pink-600 hover:bg-white'
+              }`}
+            >
+              AGENDAS E CADERNOS
             </button>
           </div>
 
