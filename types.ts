@@ -4,7 +4,7 @@ export interface Product {
   name: string;
   price: number;
   imageUrl: string;
-  category: 'PAPELARIA' | 'MOCHILAS_ESTOJOS' | 'AGENDAS_CADERNOS';
+  category: 'PAPELARIA' | 'SCOOPS_BOX' | 'CADERNOS_ESTOJOS';
 }
 
 export interface CartItem extends Product {
@@ -13,6 +13,6 @@ export interface CartItem extends Product {
 
 export enum Category {
   PAPELARIA = 'PAPELARIA',
-  MOCHILAS_ESTOJOS = 'MOCHILAS_ESTOJOS',
-  AGENDAS_CADERNOS = 'AGENDAS_CADERNOS'
+  SCOOPS_BOX = 'SCOOPS_BOX',
+  CADERNOS_ESTOJOS = 'CADERNOS_ESTOJOS'
 }

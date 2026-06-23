@@ -65,18 +65,9 @@ const App: React.FC = () => {
             <img src={HERO_IMAGE} alt="Logo Fefah" className="w-full h-full object-cover" />
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-pacifico text-pink-600 mb-4 drop-shadow-sm">
+          <h1 className="text-4xl md:text-6xl font-pacifico text-pink-600 mb-6 drop-shadow-sm">
             Fefah Papelaria
           </h1>
-          
-          <div className="space-y-3 mb-8">
-            <p className="text-gray-700 text-lg font-medium px-4">
-              ✨ Tudo aqui é muito lindo e diferente para você arrasar!
-            </p>
-            <p className="text-pink-500 text-xl font-bold px-4">
-              Saia do básico e surpreenda a todos com fofura. 💖
-            </p>
-          </div>
 
           <div className="flex flex-wrap justify-center gap-4">
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-all">
@@ -90,7 +81,7 @@ const App: React.FC = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-12 animate-fade-in">
           <div className="flex flex-wrap justify-center bg-white/40 p-2 rounded-2xl backdrop-blur-sm border border-white/40 shadow-inner mb-12 gap-2">
             <button
               onClick={() => setActiveCategory(Category.PAPELARIA)}
@@ -103,37 +94,132 @@ const App: React.FC = () => {
               PAPELARIA
             </button>
             <button
-              onClick={() => setActiveCategory(Category.MOCHILAS_ESTOJOS)}
+              onClick={() => setActiveCategory(Category.SCOOPS_BOX)}
               className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-xs md:text-base shadow-sm hover:shadow-md active:scale-95 ${
-                activeCategory === Category.MOCHILAS_ESTOJOS 
+                activeCategory === Category.SCOOPS_BOX 
                   ? 'bg-pink-500 text-white shadow-pink-300 shadow-md ring-1 ring-pink-400' 
                   : 'bg-white/80 text-pink-600 hover:bg-white'
               }`}
             >
-              MOCHILAS E ESTOJOS
+              SCOOPS E BOX
             </button>
             <button
-              onClick={() => setActiveCategory(Category.AGENDAS_CADERNOS)}
+              onClick={() => setActiveCategory(Category.CADERNOS_ESTOJOS)}
               className={`px-6 md:px-10 py-3 rounded-xl font-bold transition-all text-xs md:text-base shadow-sm hover:shadow-md active:scale-95 ${
-                activeCategory === Category.AGENDAS_CADERNOS 
+                activeCategory === Category.CADERNOS_ESTOJOS 
                   ? 'bg-pink-500 text-white shadow-pink-300 shadow-md ring-1 ring-pink-400' 
                   : 'bg-white/80 text-pink-600 hover:bg-white'
               }`}
             >
-              AGENDAS E CADERNOS
+              CADERNOS E ESTOJOS
             </button>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
-            {filteredProducts.map(product => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                onAddToCart={addToCart}
-                onImageClick={(url) => setSelectedImage(url)}
-              />
-            ))}
-          </div>
+          {activeCategory === Category.SCOOPS_BOX && (
+            <div className="w-full mb-10 bg-white/60 p-6 md:p-8 rounded-3xl backdrop-blur-md border border-white/60 shadow-lg text-center max-w-5xl mx-auto">
+              <span className="text-4xl md:text-5xl mb-4 block animate-bounce">✨🎁✨</span>
+              <h2 className="text-2xl md:text-3xl font-black text-pink-700 mb-3 font-pacifico">
+                Como Funciona a Brincadeira?
+              </h2>
+              <p className="text-gray-700 max-w-2xl mx-auto mb-8 font-medium text-sm md:text-base leading-relaxed">
+                Garanta muitos mimos e itens de papelaria fofa por um valor bem menor do que o normal! 
+                Escolha o seu Scoop ou Box favorito abaixo e divirta-se. Toque nas regras para ampliá-las! 💖
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                {/* Scoop Rules */}
+                <div className="bg-pink-50/50 p-5 rounded-2xl border border-pink-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                  <div>
+                    <h4 className="text-lg font-black text-pink-600 mb-2 flex items-center gap-2">
+                      <span>🍧</span> Regras dos Scoops
+                    </h4>
+                    <p className="text-xs text-gray-600 mb-4 leading-relaxed">
+                      Sorteamos miçangas coloridas de um copo mágico! Cada cor representa um produto super fofo (ex: coração vermelho = caneta luxo). No Scoop P você pode dar a sorte de pegar a miçanga premium; nos Scoops M e G o prêmio premium já é garantido!
+                    </p>
+                  </div>
+                  <div 
+                    onClick={() => setSelectedImage('https://i.imgur.com/uefdjpp.jpeg')}
+                    className="relative cursor-pointer group overflow-hidden rounded-xl border border-pink-200 shadow-inner bg-white/50 aspect-[4/3] flex items-center justify-center"
+                  >
+                    <img 
+                      src="https://i.imgur.com/uefdjpp.jpeg" 
+                      alt="Regras dos Scoops" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                      <span className="text-white text-xs font-bold bg-pink-600/90 px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
+                        🔍 Ampliar Regras
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Box Rules */}
+                <div className="bg-pink-50/50 p-5 rounded-2xl border border-pink-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                  <div>
+                    <h4 className="text-lg font-black text-pink-600 mb-2 flex items-center gap-2">
+                      <span>📦</span> Regras do Box
+                    </h4>
+                    <p className="text-xs text-gray-600 mb-4 leading-relaxed">
+                      Prefere escolher você mesmo(a)? No Box você paga um valor fixo promocional e tem o direito de selecionar exatamente os mimos que quer levar para casa, seguindo a tabela de opções e limites de itens da foto oficial!
+                    </p>
+                  </div>
+                  <div 
+                    onClick={() => setSelectedImage('https://i.imgur.com/dKjQwcr.jpeg')}
+                    className="relative cursor-pointer group overflow-hidden rounded-xl border border-pink-200 shadow-inner bg-white/50 aspect-[4/3] flex items-center justify-center"
+                  >
+                    <img 
+                      src="https://i.imgur.com/dKjQwcr.jpeg" 
+                      alt="Regras do Box" 
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          const fallback = parent.querySelector('.box-fallback');
+                          if (fallback) fallback.classList.remove('hidden');
+                        }
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                    />
+                    {/* Fallback visual se a imagem falhar */}
+                    <div className="box-fallback hidden w-full h-full p-4 flex flex-col items-center justify-center text-center bg-gradient-to-br from-pink-100 to-pink-50">
+                      <span className="text-4xl mb-2 animate-bounce">📦</span>
+                      <p className="text-xs font-bold text-pink-700">Tabela de Escolha do Box</p>
+                      <p className="text-[10px] text-gray-500 max-w-[200px] mt-1">Toque para tentar visualizar a imagem original de regras enviada!</p>
+                    </div>
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                      <span className="text-white text-xs font-bold bg-pink-600/90 px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
+                        🔍 Ampliar Regras
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
+              {filteredProducts.map(product => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  onAddToCart={addToCart}
+                  onImageClick={(url) => setSelectedImage(url)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 px-4 bg-white/30 backdrop-blur-sm rounded-3xl border border-white/20 shadow-inner text-center w-full max-w-lg mx-auto">
+              <span className="text-5xl mb-4 animate-bounce">
+                {activeCategory === Category.CADERNOS_ESTOJOS ? '📚' : '🎁'}
+              </span>
+              <h3 className="text-2xl font-bold text-pink-700 mb-2">
+                {activeCategory === Category.CADERNOS_ESTOJOS ? 'Cadernos e Estojos em Breve!' : 'Scoops e Box em Breve!'}
+              </h3>
+              <p className="text-gray-700 font-medium">Estamos preparando opções lindas e cheias de fofura para você. Fique de olho no nosso Instagram! 💖</p>
+            </div>
+          )}
         </div>
       </main>
 
